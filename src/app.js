@@ -51,12 +51,12 @@ app.get('/weather', (req,res)=>{
             return res.send({error})
         }
 
-        forecast(latitude, longitude, (error, {summary, temperature, precipProbability}={})=>{
+        forecast(latitude, longitude, (error, forecast)=>{
             if (error){
                 return res.send({error})
             }
             res.send({
-                forecast: summary + `  It is currently ${temperature} degrees out.  There is a ${precipProbability}% chance of rain`,
+                forecast,
                 location,
                 address: req.query.address
             })
